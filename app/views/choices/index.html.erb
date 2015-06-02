@@ -8,53 +8,58 @@
   <div class="col-xs-12">
     <input type="text" id="quicksearch" placeholder="Search Choices (start typing)" class="form-control">
   </div>
-</div> -->
-
-<hr>
+</div>
+<hr>-->
 
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-striped table-hover ">
-      <thead>
-        <tr>
-          <!-- COMMENT OUT UNTIL DISCLOSURE TIME -->
-          <th>Matched?</th>
-          <th>Rank#</th>
-          <th>Name</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @choices.each do |choice| %>
-          <% if choice.user_id == current_user.id %>
-            <tr>
-              <!-- COMMENT OUT UNTIL DISCLOSURE TIME -->
-              <td>
-                  <% if choice.matched == true %>
-                    <span class="label label-success">Match!</span>
-                  <% else %>
-                    <span class="label label-danger">No match!</span>
+      <% if @choices.count != 0 %>
+      <table class="table table-striped table-hover ">
+              <thead>
+                <tr>
+                  <!-- COMMENT OUT UNTIL DISCLOSURE TIME -->
+                  <th>Matched?</th>
+                  <th>Rank#</th>
+                  <th>Name</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @choices.each do |choice| %>
+                  <% if choice.user_id == current_user.id %>
+                    <tr>
+                      <!-- COMMENT OUT UNTIL DISCLOSURE TIME -->
+                      <td>
+                          <% if choice.matched == true %>
+                            <span class="label label-success">Match!</span>
+                          <% else %>
+                            <span class="label label-danger">No match!</span>
+                          <% end %>
+                      </td>
+                      <td>#<%= choice.rank %></td>
+                      <td><%= User.find(choice.target_id).name %></td>
+                      <td>
+                        <% if choice.disclose_if_no_match == true %>
+                          <span class="label label-default">Notify even if no match</span>
+                        <% else %>
+                          Not notifying if no match
+                        <% end %>
+                      </td>
+                      <td>
+                      <a href="/choices/<%= choice.id %>/edit" class="btn btn-default btn-sm">Edit</a>
+                      <a href="/delete_choice/<%= choice.id %>" class="btn btn-danger btn-sm" rel="nofollow">Delete</a>
+                      </td>
+                    </tr>
                   <% end %>
-              </td>
-              <td>#<%= choice.rank %></td>
-              <td><%= User.find(choice.target_id).name %></td>
-              <td>
-                <% if choice.disclose_if_no_match == true %>
-                  <span class="label label-default">Notify even if no match</span>
-                <% else %>
-                  Not notifying if no match
                 <% end %>
-              </td>
-              <td>
-              <a href="/choices/<%= choice.id %>/edit" class="btn btn-default btn-sm">Edit</a>
-              <a href="/delete_choice/<%= choice.id %>" class="btn btn-danger btn-sm" rel="nofollow">Delete</a>
-              </td>
-            </tr>
+              </tbody>
+            </table>
+          <% else %>
+            <div class="alert alert-info">
+              You still haven't added any of your choices. Don't leave it for later!
+          </div>
           <% end %>
-        <% end %>
-      </tbody>
-    </table>
   </div>
 </div>
 <a href="/choices/new" class="btn btn-success btn-block">Add new choice</a>

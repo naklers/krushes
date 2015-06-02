@@ -31,6 +31,12 @@ class ChoicesController < ApplicationController
 
     # HERE GOES THE KEY CODE!
     @choice.matched = false
+    Choice.where({:user_id => @choice.target_id }).each do |their_choice|
+      if their_choice.target_id == current_user.id
+        @choice.matched = true
+        break
+      end
+    end
 
     @choice.disclose_if_no_match = params[:disclose_if_no_match]
 

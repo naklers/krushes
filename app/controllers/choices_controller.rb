@@ -1,0 +1,81 @@
+class ChoicesController < ApplicationController
+  before_action :check_owner, only: [:show, :edit, :update, :destroy ]
+
+  def check_owner
+    choice = Choice.find(params[:id])
+    if choice.user_id != current_user.id
+      redirect_to "/choices", notice: "You can only see your own personal choices!"
+    end
+  end
+
+  def index
+    @choices = current_user.choices
+  end
+
+  def show
+    @choice = Choice.find(params[:id])
+  end
+
+  def new
+    @choice = Choice.new
+  end
+
+  def create
+    @choice = Choice.new
+
+    @choice.user_id = current_user.id
+
+    @choice.target_id = params[:target_id]
+
+    @choice.rank = params[:rank]
+
+    # HERE GOES THE KEY CODE!
+    @choice.matched = false
+
+    @choice.disclose_if_no_match = params[:disclose_if_no_match]
+
+
+
+    if @choice.save
+      redirect_to "/choices", :notice => "Choice created successfully."
+    else
+      render 'new'
+    end
+
+  end
+
+  def edit
+    @choice = Choice.find(params[:id])
+  end
+
+  def update
+    @choice = Choice.find(params[:id])
+
+    @choice.target_id = params[:target_id]
+
+    @choice.rank = params[:rank]
+
+    @choice.matched = params[:matched]
+
+    @choice.disclose_if_no_match = params[:disclose_if_no_match]
+
+
+
+    if @choice.save
+      redirect_to "/choices", :notice => "Choice updated successfully."
+    else
+      render 'edit'
+    end
+
+  end
+
+  def destroy
+    @choice = Choice.find(params[:id])
+
+    @choice.destroy
+
+
+    redirect_to "/choices", :notice => "Choice deleted."
+
+  end
+end

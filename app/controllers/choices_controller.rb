@@ -33,14 +33,16 @@ class ChoicesController < ApplicationController
     @choice.matched = false
     Choice.where({:user_id => @choice.target_id }).each do |their_choice|
       if their_choice.target_id == current_user.id
+        # Set up this choice for a match
         @choice.matched = true
+        # Set up the counterpart's choice for a match
+        their_choice.matched = true
+        their_choice.save
         break
       end
     end
 
     @choice.disclose_if_no_match = params[:disclose_if_no_match]
-
-
 
     if @choice.save
       redirect_to "/choices", :notice => "Choice created successfully."

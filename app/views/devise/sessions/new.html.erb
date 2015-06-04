@@ -5,11 +5,11 @@
   &nbsp;
 </div>
 <div class="row">
-  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+  <div class="col-sm-offset-1 col-sm-8 col-md-offset-2 col-md-10">
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-group">
-          <label for="target_id" class="col-sm-2 control-label">
+          <label for="email" class="col-sm-2 control-label">
             <%= f.label :email %>
           </label>
           <%= f.email_field :email, autofocus: true %>

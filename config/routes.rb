@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # UPDATE
   get "/choices/:id/edit", :controller => "choices", :action => "edit"
   post "/update_choice/:id", :controller => "choices", :action => "update"
+  post "/up_rank/:id", :controller => "choices", :action => "rank_up"
 
   # DELETE
   get "/delete_choice/:id", :controller => "choices", :action => "destroy"

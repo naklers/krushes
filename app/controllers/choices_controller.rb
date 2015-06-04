@@ -8,8 +8,18 @@ class ChoicesController < ApplicationController
     end
   end
 
+  def dual_update(choice1, choice2)
+    Choice.transaction do
+      choice1.save!
+      choice2.save!
+    end
+    return true
+    rescue Exception => ex
+      return false
+  end
+
   def index
-    @choices = current_user.choices
+    @choices = current_user.choices.order(:rank)
   end
 
   def show
@@ -86,6 +96,26 @@ class ChoicesController < ApplicationController
 
   end
 
+  def rank_up
+    @this_choice = Choice.find(params[:id])
+    this_rank = @this_choice.rank
+
+    # Find next-higher-ranked choice
+    upper_rank = this_rank - 1
+    upper_choice = current_user.choices.find_by({ :rank => upper_rank})
+
+    # Switch ranks
+    @this_choice.rank = upper_rank
+    upper_choice.rank = this_rank
+    puts(@this_choice.rank.to_s + "turning into" + upper_choice.rank.to_s)
+
+    if dual_update(@this_choice,upper_choice)
+      redirect_to "/choices"
+    else
+      redirect_to "/choices", :notice => "Could not update ranking"
+    end
+  end
+
   def destroy
     @choice = Choice.find(params[:id])
     this_rank = @choice.rank
@@ -108,7 +138,7 @@ class ChoicesController < ApplicationController
         remaining_choice.save
       end
     end
-    redirect_to "/choices", :notice => "Choice deleted."
+    redirect_to "/choices", :notice => "Crush deleted."
 
   end
 end

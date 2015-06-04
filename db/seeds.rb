@@ -15,7 +15,8 @@ user_hashes = [
   { :name => "Pedro Haces", :email => "phaces2016@kellogg.northwestern.edu", :password => "12341234" },
   { :name => "Pablo Jaramillo", :email => "pjaramillo2016@kellogg.northwestern.edu", :password => "12341234" },
   { :name => "Eyal Klein", :email => "eklein2015@kellogg.northwestern.edu", :password => "12341234" },
-  { :name => "Jason Yeh", :email => "jyeh2015@kellogg.northwestern.edu", :password => "12341234" }
+  { :name => "Jason Yeh", :email => "jyeh2015@kellogg.northwestern.edu", :password => "12341234" },
+  { :name => "Anja Zhao", :email => "azhao2015@kellogg.northwestern.edu", :password => "12341234" }
 ]
 
 user_hashes.each do |user_hash|

@@ -15,7 +15,7 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Add Choice</h3>
+        <h3 class="panel-title">Add a crush</h3>
       </div>
       <div class="panel-body">
 
@@ -26,10 +26,10 @@
           <!-- Label and input for target user -->
           <div class="form-group">
 
-            <label for="target_id" class="col-sm-2 control-label">
-              Target
+            <label for="target_id" class="col-sm-3 control-label">
+              I have a crush on
             </label>
-            <div class="col-sm-10">
+            <div class="col-sm-6">
               <%= select_tag(:target_id, options_from_collection_for_select(User.all, :id, :name, @choice.target_id), :class => "form-control") %>
             </div>
 
@@ -38,7 +38,7 @@
           <!-- Label and input for disclose_if_no_match -->
           <div class="form-group">
 
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-3 col-sm-6">
               <div class="checkbox">
                 <label for="disclose_if_no_match">
                   <input type="checkbox" id="disclose_if_no_match" name="disclose_if_no_match" value="1" <%= "checked" if @choice.disclose_if_no_match %>>
@@ -51,9 +51,9 @@
 
 
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-3 col-sm-6">
               <button class="btn btn-primary">
-                Create Choice
+                Save
               </button>
               or
               <a href="/choices">Cancel</a>

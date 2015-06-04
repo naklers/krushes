@@ -28,9 +28,7 @@
                             <span class="label label-danger">No match!</span>
                           <% end %>
                       </td> -->
-                      <td width="50">
-                        #<%= choice.rank %>&nbsp;
-                      </td>
+                      <!-- COMMENT AFTER DISCLOSURE -->
                       <td width="80">
                         <% if choice.rank > 1%>
                           <form action="/up_rank/<%= choice.id %>" method="post">
@@ -41,6 +39,9 @@
                         <% else %>
                           The one!
                         <% end %>
+                      </td>
+                      <td width="50">
+                        #<%= choice.rank %>&nbsp;
                       </td>
                       <!-- No avatar in this version -->
                       <!-- <td width="36"><img class="avatar-image" src="<%= User.find(choice.target_id).fb_pic_url%>" height="36" width="36"></td> -->

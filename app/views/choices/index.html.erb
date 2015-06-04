@@ -28,7 +28,7 @@
                             <span class="label label-danger">No match!</span>
                           <% end %>
                       </td> -->
-                      <td width="36">
+                      <td width="50">
                         #<%= choice.rank %>&nbsp;
                       </td>
                       <td width="80">
@@ -39,10 +39,11 @@
                             <button class="btn btn-primary btn-xs">Move up</button>
                           </form>
                         <% else %>
-                          The one
+                          The one!
                         <% end %>
                       </td>
-                      <td width="36"><img class="avatar-image" src="<%= User.find(choice.target_id).fb_pic_url%>" height="36" width="36"></td>
+                      <!-- No avatar in this version -->
+                      <!-- <td width="36"><img class="avatar-image" src="<%= User.find(choice.target_id).fb_pic_url%>" height="36" width="36"></td> -->
                       <td><%= User.find(choice.target_id).name %></td>
                       <td>
                         <% if choice.disclose_if_no_match == true %>

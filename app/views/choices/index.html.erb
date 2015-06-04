@@ -21,7 +21,7 @@
                   <% if choice.user_id == current_user.id %>
                     <tr>
                       <!-- COMMENT OUT UNTIL DISCLOSURE TIME -->
-                      <!-- <td>
+                      <!-- <td width="80">
                           <% if choice.matched == true %>
                             <span class="label label-success">Match!</span>
                           <% else %>
@@ -34,7 +34,7 @@
                           <form action="/up_rank/<%= choice.id %>" method="post">
                             <!-- Hidden input for authenticity token to protect from forgery -->
                             <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-                            <button class="btn btn-primary btn-xs">Move up</button>
+                            <button class="btn btn-primary btn-xs">Up <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button>
                           </form>
                         <% else %>
                           The one!

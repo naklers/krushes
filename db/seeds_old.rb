@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'csv'
-
 user_hashes = [
   { :name => "Ignacio Naveiras", :email => "inaveiras2015@kellogg.northwestern.edu", :password => "12341234"  },
   { :name => "Andrea Beer", :email => "asilvabeer2015@kellogg.northwestern.edu", :password => "12341234" },

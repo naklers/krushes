@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
   # Has many choices that need destroying if user is destroyed
-  has_many :choices, dependent: => :destroy
+  has_many :choices, dependent: :destroy
 end

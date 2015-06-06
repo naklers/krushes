@@ -8,15 +8,15 @@
 
 require 'csv'
 
-csv_text = File.read("users.csv")
-csv = CSV.parse(csv_text, :headers => true)
+csv_text = File.read("./users.csv")
+csv = CSV.new(csv_text, :headers => true, :header_converters => :symbol)
 csv.each do |row|
   user_hash = row.to_hash
-  generated_password = Devise.friendly_token.first(8)
+  generated_password = Devise.friendly_token.first(6).downcase.to_s
   user_hash[:password] = generated_password
+  puts(user_hash.to_s)
   User.create(user_hash)
-
+  puts("CREATED USER " + user_hash[:name].to_s + " with pwd " + user_hash[:password].to_s)
 end
-
 
 puts "There are now #{User.count} users in the database."

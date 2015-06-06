@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Kellogg Kindling!</h1>
+    <p>
+      As a participant in EDC 2015, you have automatically been added to <a href="<%= @url %>" target="new">Kellogg Kinding</a>. These are your credentials:
+      <dl>
+        <dt>Email: <strong><%= @user.email %></strong></dt>
+        <dt>Password: <strong><%= @pwd %></strong></dt>
+      </dl>
+    </p>
+    <p>
+      To login to the app, just follow <a href="<%= @url %>" target="new">this link</a> or paste https://kellogg-kindling.herokuapp.com/ onto your browser.
+    </p>
+    <p>Kellogg Kindling is a student project aimed at letting you tell 3 of your secret crushes about your feelings with your preferred degree of exposure:
+      <ul>
+        <li>By default, the people you choose will only find out if they also choose you as a crush of theirs
+        </li>
+        <li>You can choose which specific crushes you want to be notified EVEN if there's no match
+        </li>
+      </ul>
+    </p>
+    <p>If you do NOT want to be part of this activity, you can either:
+    <ul>
+      <li>Remove yourself from your profile page in the app (immediate)</li>
+      <li><a href="mailto:kellogg.kindling@gmail.com?Subject=Remove" target="_top">Email us</a> to have you removed (may take us a few hours!)</li></ul>
+    </p>
+    <p>Thanks and have fun finding your matches!</p>
+  </body>
+</html>

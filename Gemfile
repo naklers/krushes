@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'mail'
 gem 'devise'
 gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git", :branch => "simple"
 

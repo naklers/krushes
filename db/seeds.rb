@@ -8,14 +8,16 @@
 
 require 'csv'
 
-csv_text = File.read("./users.csv")
+csv_text = File.read("./users_test.csv")
 csv = CSV.new(csv_text, :headers => true, :header_converters => :symbol)
 csv.each do |row|
   user_hash = row.to_hash
   generated_password = Devise.friendly_token.first(6).downcase.to_s
   user_hash[:password] = generated_password
-  User.create(user_hash)
-  puts("CREATED USER " + user_hash[:name].to_s + " with pwd " + user_hash[:password].to_s)
+  user = User.create(user_hash)
+  puts("CREATED USER " + user.name.to_s + " with pwd " + user_hash[:password].to_s)
+  # Ask mailer to send welcome email as part of the user creation
+  UserMailer.welcome_email(user,generated_password).deliver!
 end
 
 puts "There are now #{User.count} users in the database."

@@ -8,7 +8,7 @@
 
 require 'csv'
 
-csv_text = File.read("./users.csv")
+csv_text = File.read("./users_2.csv")
 csv = CSV.new(csv_text, :headers => true, :header_converters => :symbol)
 csv.each do |row|
   user_hash = row.to_hash

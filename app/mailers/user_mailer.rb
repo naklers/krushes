@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @pwd = pwd
     @url  = "https://kellogg-kindling.herokuapp.com/"
-    mail(to: @user.email, subject: "DISREGARD PREVIOUS - Access to Kellogg Kindling")
+    mail(to: @user.email, subject: "Access to Kellogg Kindling")
     puts("SENT WELCOME_EMAIL to " + @user.email.to_s)
   end
 end

@@ -14,7 +14,6 @@ csv.each do |row|
   user_hash = row.to_hash
   generated_password = Devise.friendly_token.first(6).downcase.to_s
   user_hash[:password] = generated_password
-  puts(user_hash.to_s)
   User.create(user_hash)
   puts("CREATED USER " + user_hash[:name].to_s + " with pwd " + user_hash[:password].to_s)
 end

@@ -8,7 +8,7 @@
 
 # require 'csv'
 
-# csv_text = File.read("./users_1.csv")
+# csv_text = File.read("./users3.csv")
 # csv = CSV.new(csv_text, :headers => true, :header_converters => :symbol)
 # csv.each do |row|
 #   user_hash = row.to_hash
@@ -20,4 +20,4 @@
 #   UserMailer.welcome_email(user,generated_password).deliver!
 # end
 
-puts "There are now #{User.count} users in the database."
+# puts "There are now #{User.count} users in the database."

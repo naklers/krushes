@@ -19,10 +19,7 @@ class ChoicesController < ApplicationController
   end
 
   def index
-    # This user's crushes and matches
     @choices = current_user.choices.order(:rank)
-    # Non-matched crushes from others on this user
-    @their_crushes = Choice.where({:target_id => current_user.id}).where({:matched => !true}).where({:disclose_if_no_match => true})
   end
 
   def show

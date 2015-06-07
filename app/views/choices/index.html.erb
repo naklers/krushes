@@ -38,13 +38,6 @@
   </div>
 </div>
 
-<% if current_user.choices.count<3 %>
-  <a href="/choices/new" class="btn btn-primary btn-block">Add a crush (up to 3)</a>
-  </br>
-<% else %>
-<p>You're all set! Now just wait until the Big Reveal. Good luck matching!</p>
-<% end %>
-
 <% if @their_crushes.count != 0 %>
   <h2>Others that have a crush on you</h2>
   <div class="row">

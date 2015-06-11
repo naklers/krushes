@@ -1,4 +1,5 @@
-== README
+# Kellogg Kindling
+Kellogg Kindling offers members of a closed group the chance to reveal their secret crushes on one another and potentially be corresponded.
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -7,19 +8,25 @@ Things you may want to cover:
 
 * Ruby version
 
-* System dependencies
+# System dependencies
+Kindling depends on Gmail - actually on a personal account (kellogg.kindling@gmail.com) - as an outbound email server.
 
-* Configuration
+# Configuration
+* Enter all the users you want to have in the app as rows in a CSV file (follow the plain "name,email" format as in users_dsgn425.csv in the example). Make sure this CSV contains ONLY the users you want to be notified of account creation, and be cognoscent of the environment this instance is going to be run in - locally or in production (heroku)? This may determine how real you want to go with user creation.
+* Change the source user CSV file on seeds.rb to match the file you want to use in this instance of the app
+* On config/application.rb: set up the app to be either on "matching" or on "reveal" phase through the config.stage.matching variable (true and false, respectively). Available features and info on the views will differ as a result.
 
-* Database creation
+# Database initialization
+* Kindling is for closed groups and thus it DOES NOT ALLOW NEW USER SIGNUPS - users are signed up by an admin through a back-end seeding process
+* To set up the DB:
+  * seeds.rb file has already been prepared so as to read people's data from rows in the participants CSV, create users and email them their password - later modifiable through their account management page.
+  * run rake db:seed - This will launch the seeding process as described above.
+  GRAVE-DANGER WARNING: ONLY seed the database with your real app users on the production evironment (heroku)!!! NEVER include them in your localhost environment, for they'll be getting an email with a password not valid in production, and potentially with the app actually not even being available to them yet! For your localhost trials, you can create a temp CSV with several emails of yours and seed the DB with that one.
 
-* Database initialization
+# Services (job queues, cache servers, search engines, etc.)
+* Gmail, through ApplicationMailer
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+# Deployment instructions
 
 * ...
 

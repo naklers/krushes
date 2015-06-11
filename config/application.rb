@@ -22,5 +22,8 @@ module Kmf
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # If true, app will allow users to add/edit crushes and perform matching in the background. Otherwise it will just show the outcome
+    config.stage.matching = true
   end
 end

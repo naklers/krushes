@@ -1,58 +1,104 @@
 <h2>Your crushes and matches</h2>
 <div class="row">
   <div class="col-md-12">
+If app is in matching state, display this table
+    <% if config.stage.matching==true %>
       <% if @choices.count != 0 %>
-      <table class="table table-striped table-hover">
-              <tbody>
-                <% @choices.each do |choice| %>
-                  <% if choice.user_id == current_user.id %>
-                    <tr>
-                      <!-- COMMENT OUT UNTIL DISCLOSURE TIME -->
-                      <td width="80">
-                          <% if choice.matched == true %>
-                            <span class="label label-success">It's a match!</span>
-                          <% else %>
-                            <span class="label label-danger">No match</span>
-                          <% end %>
-                      </td>
-                      <td>
-                        <%= User.find(choice.target_id).name %>
-                      </td>
-                      <td>
-                        <% if choice.matched==true || (choice.disclose_if_no_match==true && choice.matched!=true) %>
-                          <span class="label label-info">Knows!</span>
-                        <% else %>
-                          <span class="label label-default">Doesn't know</span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
-                <% end %>
-              </tbody>
-            </table>
-          <% else %>
-            <div class="alert alert-info">
-              You didn't select any crushes! It's too late now, but maybe someone out there does have a crush on you...
+        <table class="table table-striped table-hover">
+           <tbody>
+            <% @choices.each do |choice| %>
+              <% if choice.user_id == current_user.id %>
+                <tr>
+                   <td width="80">
+                    <% if choice.rank > 1%>
+                      <form action="/up_rank/<%= choice.id %>" method="post">
+                        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                        <button class="btn btn-primary btn-xs">Up <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button>
+                      </form>
+                    <% else %>
+                      The one!
+                    <% end %>
+                  </td>
+                  <td width="50">
+                    #<%= choice.rank %>&nbsp;
+                  </td>
+                  <!-- No avatar in this version -->
+                  <!-- <td width="36"><img class="avatar-image" src="<%= User.find(choice.target_id).fb_pic_url%>" height="36" width="36"></td> -->
+                  <td><%= User.find(choice.target_id).name %></td>
+                  <td>
+                    <% if choice.disclose_if_no_match == true %>
+                      <span class="label label-info">Notified even if no match</span>
+                    <% else %>
+                      <span class="label label-default">NOT notified if no match</span>
+                    <% end %>
+                  </td>
+                  <td>
+                  <a href="/delete_choice/<%= choice.id %>" class="btn btn-danger btn-xs" rel="nofollow">Delete</a>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="alert alert-info">
+          You haven't added any crushes yet. Don't leave it for later!
           </div>
-          <% end %>
+      <% end %>
+    <!-- Else, display outcomes -->
+    <% else %>
+      <% if @choices.count != 0 %>
+        <table class="table table-striped table-hover">
+          <tbody>
+            <% @choices.each do |choice| %>
+              <% if choice.user_id == current_user.id %>
+                <tr>
+                  <td width="80">
+                    <% if choice.matched == true %>
+                    <span class="label label-success">It's a match!</span>
+                    <% else %>
+                    <span class="label label-danger">No match</span>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= User.find(choice.target_id).name %>
+                  </td>
+                  <td>
+                    <% if choice.matched==true || (choice.disclose_if_no_match==true && choice.matched!=true) %>
+                    <span class="label label-info">Knows!</span>
+                    <% else %>
+                    <span class="label label-default">Doesn't know</span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="alert alert-info">
+      You didn't select any crushes! It's too late now, but maybe someone out there does have a crush on you...
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
 <% if @their_crushes.count != 0 %>
-  <h2>Others that have a crush on you</h2>
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-striped table-hover">
+<h2>Others that have a crush on you</h2>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
       <tbody>
-      <% @their_crushes.each do |their_crush| %>
+        <% @their_crushes.each do |their_crush| %>
         <tr>
           <td><%= their_crush.user.name %></td>
         </tr>
-      <% end %>
+        <% end %>
       </tbody>
-      </table>
-    </div>
+    </table>
   </div>
+</div>
 <% end %>
 
 

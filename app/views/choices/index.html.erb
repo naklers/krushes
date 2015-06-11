@@ -1,8 +1,8 @@
 <h2>Your crushes and matches</h2>
 <div class="row">
   <div class="col-md-12">
-If app is in matching state, display this table
-    <% if config.stage.matching==true %>
+    <!-- If app is in matching state, display editable crushes table -->
+    <% if Rails.configuration.x.stage.matching==true %>
       <% if @choices.count != 0 %>
         <table class="table table-striped table-hover">
            <tbody>
@@ -45,7 +45,7 @@ If app is in matching state, display this table
           You haven't added any crushes yet. Don't leave it for later!
           </div>
       <% end %>
-    <!-- Else, display outcomes -->
+    <!-- Else, display read-only outcomes -->
     <% else %>
       <% if @choices.count != 0 %>
         <table class="table table-striped table-hover">

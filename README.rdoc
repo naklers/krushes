@@ -12,7 +12,10 @@ Things you may want to cover:
 Kindling depends on Gmail - actually on a personal account (kellogg.kindling@gmail.com) - as an outbound email server.
 
 # Configuration
-* Enter all the users you want to have in the app as rows in a CSV file (follow the plain "name,email" format as in users_dsgn425.csv in the example). Make sure this CSV contains ONLY the users you want to be notified of account creation, and be cognoscent of the environment this instance is going to be run in - locally or in production (heroku)? This may determine how real you want to go with user creation.
+* Enter all the users you want to have in the app as rows in a CSV file (follow the plain "name,email" format as in users_dsgn425.csv in the example).
+  * NOTE: this setting can be changed dynamically throughout the lifetime of this instance. It requires restarting Rails Server, though.
+* It's recommended to enter at least 3 users so as to be able to test all the possible outcomes
+* Make sure this CSV contains ONLY the users you want to be notified of account creation, and be cognoscent of the environment this instance is going to be run in - locally or in production (heroku)? This may determine how real you want to go with user creation.
 * Change the source user CSV file on seeds.rb to match the file you want to use in this instance of the app
 * On config/application.rb: set up the app to be either on "matching" or on "reveal" phase through the config.stage.matching variable (true and false, respectively). Available features and info on the views will differ as a result.
 

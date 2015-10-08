@@ -1,8 +1,14 @@
 source 'https://rubygems.org'
 
+# Use ActiveAdmin for admin mgmt
 gem 'activeadmin', '~> 1.0.0.pre1'
+
+# Use Mail for emailing
 gem 'mail'
+
+# Use Devise for authentication and session mgmt
 gem 'devise'
+
 gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git", :branch => "simple"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -15,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -1,4 +1,8 @@
 ActiveAdmin.setup do |config|
+
+  # Skip regular user authentication for Admins
+  config.skip_before_filter :authenticate_user!
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout

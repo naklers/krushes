@@ -2,8 +2,6 @@ ActiveAdmin.register User do
 
 menu priority: 1
 
-
-
 # Index definition: columns in the table
 index do
   column :id
@@ -19,13 +17,27 @@ config.sort_order = 'id_asc'
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :name,:email
+#permit_params :name,:email
 # or
 #
-# permit_params do
-#   permitted = [:permitted, :attributes]
+permit_params [:name,:email]
+
+form do |f|
+  f.inputs "User" do
+    f.input :name
+    f.input :email
+  end
+  f.actions
+end
 #   permitted << :other if resource.something?
 #   permitted
+# end
+
+# creat_after sends email to the User's email with a link to create a password
+after_create { |user| user.send_reset_password_instructions }
+# SO far the below is not required, for we are not yet creating admins
+# def password_required?
+#   new_record? ? false : super
 # end
 
 # Right-side filters enabled

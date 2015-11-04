@@ -62,6 +62,7 @@ class ChoicesController < ApplicationController
         end
       end
 
+      # Watch out,this currently results in lack of choice generating a "nil" value! Sort of works but is not consistent
       @choice.disclose_if_no_match = params[:disclose_if_no_match]
 
       if @choice.save
@@ -87,6 +88,7 @@ class ChoicesController < ApplicationController
 
     @choice.matched = params[:matched]
 
+    # Watch out,this currently results in lack of choice generating a "nil" value! Sort of works but is not consistent
     @choice.disclose_if_no_match = params[:disclose_if_no_match]
 
 

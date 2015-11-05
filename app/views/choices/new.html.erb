@@ -1,70 +1,54 @@
 <!-- Validation failure messages -->
 
 <% if @choice.errors.any? %>
-  <% @choice.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @choice.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
-<!-- Responsive panel example -->
-
+<!-- Picture-based selection interface -->
+<h2>See who's on KMF and select your 3 crushes!</h2>
 <div class="row">
-  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Add a crush</h3>
-      </div>
-      <div class="panel-body">
-
-        <form action="/create_choice" method="post" class="form-horizontal">
-          <!-- Hidden input for authenticity token to protect from forgery -->
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-          <!-- Label and input for target user -->
-          <div class="form-group">
-
-            <label for="target_id" class="col-sm-3 control-label">
-              I have a crush on
-            </label>
-            <div class="col-sm-6">
-              <%= select_tag(:target_id, options_from_collection_for_select(User.all, :id, :name, @choice.target_id), :class => "form-control") %>
-            </div>
-
-          </div>
-
-          <!-- Label and input for disclose_if_no_match -->
-          <div class="form-group">
-
-            <div class="col-sm-offset-3 col-sm-6">
-              <div class="checkbox">
-                <label for="disclose_if_no_match">
-                  <input type="checkbox" id="disclose_if_no_match" name="disclose_if_no_match" value="1" <%= "checked" if @choice.disclose_if_no_match %>>
-                  Notify her/him even if there's no match
-                </label>
+  <!-- Select your 3 crushes -->
+  <% @other_users.each do |other_user| %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= other_user.name %></h3>
+        </div>
+        <div class="panel-body">
+          <dl>
+            <dd><img src="<%= other_user.fb_pic_url %>"></dd>
+          </dl>
+          <!-- One form object per potential target. We NEVER pass the current user through the view, for security reasons! -->
+          <div class="col-sm-offset-3 col-sm-6">
+            <%= simple_form_for @choice, :url => '/create_choice', :method => :post do |f| %>
+              <%= hidden_field_tag(:target_id, other_user.id) %>
+              <!-- Currently not working: the database never gets a true value -->
+              <!-- <%= f.input :disclose_if_no_match%> -->
+              <%= f.button :button, 'Choose', class: 'btn btn-primary' %>
+            <% end %>
+            <!-- TODO: REMOVE -->
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-6">
+                <div class="checkbox">
+                  <label for="disclose_if_no_match">
+                    <input type="checkbox" id="disclose_if_no_match" name="disclose_if_no_match" value="1" <%= "checked" if @choice.disclose_if_no_match %>>
+                    Notify her/him even if there's no match
+                  </label>
+                </div>
               </div>
             </div>
-
           </div>
-
-
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-              <button class="btn btn-primary">
-                Save
-              </button>
-              or
-              <a href="/choices">Cancel</a>
-            </div>
-          </div>
-
-        </form>
-
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
+</div>
+<div class="row">
+  <a href="/choices">Return to index</a>
 </div>
 
-<!-- End responsive panel example -->

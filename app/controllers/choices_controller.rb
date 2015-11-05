@@ -30,6 +30,9 @@ class ChoicesController < ApplicationController
   end
 
   def new
+    # All users to choose from
+    # *************Pending some sort of filtering********
+    @other_users = User.all_except(current_user)
     @choice = Choice.new
   end
 
@@ -59,11 +62,17 @@ class ChoicesController < ApplicationController
           their_choice.matched = true
           their_choice.save
           break
+        else
+          @choice.matched = false
         end
       end
 
       # Watch out,this currently results in lack of choice generating a "nil" value! Sort of works but is not consistent
-      @choice.disclose_if_no_match = params[:disclose_if_no_match]
+      if params[:disclose_if_no_match] == 1
+        @choice.disclose_if_no_match = true
+      else
+        @choice.disclose_if_no_match = false
+      end
 
       if @choice.save
         redirect_to "/choices", :notice => "Choice created successfully."

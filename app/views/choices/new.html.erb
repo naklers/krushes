@@ -28,20 +28,9 @@
             <%= simple_form_for @choice, :url => '/create_choice', :method => :post do |f| %>
               <%= hidden_field_tag(:target_id, other_user.id) %>
               <!-- Currently not working: the database never gets a true value -->
-              <!-- <%= f.input :disclose_if_no_match%> -->
-              <%= f.button :button, 'Choose', class: 'btn btn-primary' %>
+              <%= f.check_box :disclose_if_no_match, name: 'disclose_if_no_match' %>
+              <%= f.button :submit, 'Choose', class: 'btn btn-primary' %>
             <% end %>
-            <!-- TODO: REMOVE -->
-            <div class="form-group">
-              <div class="col-sm-offset-3 col-sm-6">
-                <div class="checkbox">
-                  <label for="disclose_if_no_match">
-                    <input type="checkbox" id="disclose_if_no_match" name="disclose_if_no_match" value="1" <%= "checked" if @choice.disclose_if_no_match %>>
-                    Notify her/him even if there's no match
-                  </label>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

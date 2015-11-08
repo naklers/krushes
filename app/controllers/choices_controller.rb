@@ -68,11 +68,7 @@ class ChoicesController < ApplicationController
       end
 
       # Watch out,this currently results in lack of choice generating a "nil" value! Sort of works but is not consistent
-      if params[:disclose_if_no_match] == 1
-        @choice.disclose_if_no_match = true
-      else
-        @choice.disclose_if_no_match = false
-      end
+      @choice.disclose_if_no_match = params[:disclose_if_no_match]
 
       if @choice.save
         redirect_to "/choices", :notice => "Choice created successfully."

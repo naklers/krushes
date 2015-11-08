@@ -14,4 +14,6 @@ class User < ActiveRecord::Base
     where.not(id: user)
   end
 
+  mount_uploader :photo, PhotoUploader
+
 end

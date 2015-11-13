@@ -7,12 +7,15 @@ action_item :only => :index do
   link_to 'Import users from CSV file', :action => 'upload_users_csv'
 end
 
+# Menu action to launch the user import form
 collection_action :upload_users_csv do
   render "admin/csv/import_users_csv"
 end
 
+# Form action to trigger user import and return to the users index in ActiveAdmin
 collection_action :import_users_csv, :method => :post do
-  CsvDb.convert_save("user", params[:dump][:file])
+  # CsvDb.convert_save("user", params[:dump][:file])
+  User.import(params[:dump][:file])
   redirect_to :action => :index, :notice => "CSV imported successfully!"
 end
 
@@ -49,6 +52,7 @@ end
 
 # creat_after sends email to the User's email with a link to create a password
 after_create { |user| user.send_reset_password_instructions }
+
 # SO far the below is not required, for we are not yet creating admins
 # def password_required?
 #   new_record? ? false : super

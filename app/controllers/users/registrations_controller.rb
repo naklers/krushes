@@ -39,6 +39,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
+  # def import_csv
+  # end
+
   def update_resource(resource, params)
     resource.update_without_password(params)
   end

@@ -2,6 +2,20 @@ ActiveAdmin.register User do
 
 menu priority: 1
 
+# Add menu option to upload CSV file
+action_item :only => :index do
+  link_to 'Import users from CSV file', :action => 'upload_users_csv'
+end
+
+collection_action :upload_users_csv do
+  render "admin/csv/import_users_csv"
+end
+
+collection_action :import_users_csv, :method => :post do
+  CsvDb.convert_save("user", params[:dump][:file])
+  redirect_to :action => :index, :notice => "CSV imported successfully!"
+end
+
 # Index definition: columns in the table
 index do
   column :id
@@ -46,9 +60,9 @@ filter :email, as: :string
 filter :id, as: :string, label: 'User ID'
 
 sidebar "Crushes", only: [:show, :edit] do
-    ul do
-      li link_to "Crushes", "/admin/users/#{user.id}/choices"
-    end
+  ul do
+    li link_to "Crushes", "/admin/users/#{user.id}/choices"
   end
+end
 
 end

@@ -1,0 +1,26 @@
+<h2>Interested? Give us a shout!</h2>
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-11">
+    <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+    <%= f.input :first_name, :required => true %>
+    <%= f.input :last_name, :required => true %>
+    <%= f.input :email, :required => true, placeholder: 'user@domain.com' %>
+    <%= f.input :entity_name, :required => true, :hint => 'Yo!' %>
+    <div class="form-group">
+      <%= f.label "URL", :class => "col-sm-3 control-label" %>
+      <%= f.input :entity_site,:as => :url, placeholder: 'yourschool.com', :hint => 'Yo!' %>
+    </div>
+    <div class="form-group">
+      <%= f.input :message, :as => :text, :required => true, placeholder: 'Type your message here' %>
+    </div>
+    <!-- Hidden so that no one can fill it out but computers will fill it out. This will determine whether the message is coming from a computer or not -->
+    <div class= "hidden">
+      <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+    </div>
+    <div>
+      &nbsp
+      <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>

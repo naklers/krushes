@@ -1,4 +1,5 @@
 class ChoicesController < ApplicationController
+  before_action :authenticate_user!
   before_action :check_owner, only: [:show, :edit, :update, :destroy ]
 
   def check_owner

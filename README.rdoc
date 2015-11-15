@@ -12,17 +12,16 @@ Things you may want to cover:
 Kindling depends on Gmail - actually on a personal account (kellogg.kindling@gmail.com) - as an outbound email server.
 
 ## Configuration
-* Enter all the users you want to have in the app as rows in a CSV file (follow the plain "name,email" format as in users_dsgn425.csv in the example).
-  * NOTE: this setting can be changed dynamically throughout the lifetime of this instance. It requires restarting Rails Server, though.
-* It's recommended to enter at least 3 users so as to be able to test all the possible outcomes
-* Make sure this CSV contains ONLY the users you want to be notified of account creation, and be cognoscent of the environment this instance is going to be run in - locally or in production (heroku). This may determine how real you want to go with user creation (see warning below).
-* Change the source user CSV file on seeds.rb to match the file you want to use in this instance of the app
-* On config/application.rb: set up the app to be either on "matching" or on "reveal" phase through the config.stage.matching variable (true and false, respectively). Available features and info on the views will differ as a result.
+On config/application.rb: set up the app to be either on "matching" or on "reveal" phase through the config.stage.matching variable (true and false, respectively). Available features and info on the views will differ as a result
+* NOTE: this setting can be changed dynamically throughout the lifetime of this instance. It requires restarting Rails Server, though.
 
 ## Database initialization
 * Kindling is for closed groups and thus it DOES NOT ALLOW NEW USER SIGNUPS - users are signed up by an admin through a back-end seeding process
 * Next step will be to enable admin-only user cration through a web interface, thus avoiding the cumbersome seeding of the platform.
-* To set up the DB:
+
+
+## (DEPRECATED)
+To set up the DB:
   * seeds.rb file has already been prepared so as to read people's data from rows in the participants CSV, create users and email them their password - later modifiable through their account management page.
     *NOTE: sendouts are curretly deactivated, a csv file generated locally instead
   * run rake db:seed - This will launch the seeding process as described above.
@@ -33,7 +32,10 @@ Kindling depends on Gmail - actually on a personal account (kellogg.kindling@gma
 
 ## Deployment instructions
 
-* ...
+## Administration
+* Enter all the users you want to have in the app as rows in a CSV file (follow the plain "name,email" format as in users_seed.csv in the example).
+  * Make sure this CSV contains ONLY the users you want to be notified of account creation, and be cognoscent of the environment this instance is going to be run in - locally or in production (heroku). This may determine how real you want to go with user creation (see warning below).
+* Import the CSV file using the menu button up on the top right of the Users administration screen
 
 
 Please feel free to use a different markup language if you do not plan to run

@@ -22,8 +22,6 @@
                   <td width="50">
                     #<%= choice.rank %>&nbsp;
                   </td>
-                  <!-- No avatar in this version -->
-                  <!-- <td width="36"><img class="avatar-image" src="<%= User.find(choice.target_id).fb_pic_url%>" height="36" width="36"></td> -->
                   <td><%= User.find(choice.target_id).name %></td>
                   <td>
                     <% if choice.disclose_if_no_match == true %>

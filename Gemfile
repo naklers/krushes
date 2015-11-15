@@ -6,7 +6,7 @@ gem 'rails', '4.2.1'
 # Use ActiveAdmin for admin mgmt
 gem 'activeadmin', '~> 1.0.0.pre1'
 
-# Use Mail for emailing
+# Use Mail for email sendouts
 gem 'mail'
 
 # Use Devise for authentication and session mgmt
@@ -17,6 +17,9 @@ gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.
 
 # Simple HTML forms
 gem 'simple_form'
+
+# Use MailForm for contact forms
+gem 'mail_form'
 
 # Use CarrierWave for file uploads through forms
 gem 'carrierwave'

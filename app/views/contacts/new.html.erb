@@ -1,26 +1,104 @@
-<h2>Interested? Give us a shout!</h2>
-<div class="row">
-  <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-11">
-    <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
-    <%= f.input :first_name, :required => true %>
-    <%= f.input :last_name, :required => true %>
-    <%= f.input :email, :required => true, placeholder: 'user@domain.com' %>
-    <%= f.input :entity_name, :required => true, :hint => 'Yo!' %>
-    <div class="form-group">
-      <%= f.label "URL", :class => "col-sm-3 control-label" %>
-      <%= f.input :entity_site,:as => :url, placeholder: 'yourschool.com', :hint => 'Yo!' %>
+<!-- Full Width Image Header -->
+<header class="header-image">
+  <div class="headline">
+    <div class="container">
+      <h1>One Page Wonder</h1>
+      <h2>Will Knock Your Socks Off</h2>
     </div>
-    <div class="form-group">
-      <%= f.input :message, :as => :text, :required => true, placeholder: 'Type your message here' %>
-    </div>
-    <!-- Hidden so that no one can fill it out but computers will fill it out. This will determine whether the message is coming from a computer or not -->
-    <div class= "hidden">
-      <%= f.input :nickname, :hint => 'Leave this field blank!' %>
-    </div>
-    <div>
-      &nbsp
-      <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
-    </div>
-    <% end %>
   </div>
-</div>
+</header>
+
+<section class="bg-primary" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 text-center">
+        <h2 class="section-heading">We've got what you need!</h2>
+        <hr class="light">
+        <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+        <a href="#contact" class="btn btn-default btn-xl">Get Started!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="desc">
+  <!-- Page Content -->
+  <div class="container">
+
+    <hr class="featurette-divider">
+
+    <!-- First Featurette -->
+    <div class="featurette" id="about">
+      <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+      <h2 class="featurette-heading">This First Heading
+        <span class="text-muted">Will Catch Your Eye</span>
+      </h2>
+      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Second Featurette -->
+    <div class="featurette" id="services">
+      <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
+      <h2 class="featurette-heading">The Second Heading
+        <span class="text-muted">Is Pretty Cool Too.</span>
+      </h2>
+      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Third Featurette -->
+    <div class="featurette" id="contact">
+      <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+      <h2 class="featurette-heading">The Third Heading
+        <span class="text-muted">Will Seal the Deal.</span>
+      </h2>
+      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    </div>
+
+    <hr class="featurette-divider">
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 text-center">
+        <h2 class="section-heading">Interested? Give us a shout!</h2>
+        <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+        <%= f.input :first_name, :required => true %>
+        <%= f.input :last_name, :required => true %>
+        <%= f.input :email, :required => true, placeholder: 'user@domain.com' %>
+        <%= f.input :entity_name, :required => true, :hint => 'Yo!' %>
+        <div class="form-group">
+          <%= f.label "URL", :class => "col-sm-3 control-label" %>
+          <%= f.input :entity_site,:as => :url, placeholder: 'yourschool.com', :hint => 'Yo!' %>
+        </div>
+        <div class="form-group">
+          <%= f.input :message, :as => :text, :required => true, placeholder: 'Type your message here' %>
+        </div>
+        <!-- Hidden so that no one can fill it out but computers will fill it out. This will determine whether the message is coming from a computer or not -->
+        <div class= "hidden">
+          <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+        </div>
+        <div>
+          &nbsp
+          <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<section id=footer>
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <div class="col-lg-12">
+        <p>Copyright &copy; Your Website 2014</p>
+      </div>
+    </div>
+  </footer>
+</section>

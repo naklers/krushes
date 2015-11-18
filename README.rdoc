@@ -1,3 +1,5 @@
+# REMEMBER TO REMOVE ALL INSTANCE-SPECIFIC REFERENCES!!!
+
 # Kellogg Kindling
 Kellogg Kindling offers members of a closed group the chance to reveal their secret crushes on one another and potentially be corresponded.
 

@@ -19,17 +19,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
     @user.photo = params[:photo]
   end
 
   # DELETE /resource
-  # def destroy
-  #   # Find all choices by others pointing to this user and deactivate them
-  #   Choice.where({:target_id => @user.id }).each do |their_obsolete_choice|
-  #     their_obsolete_choice.current = false
-  #   end
-  # end
+  def destroy
+    # Find all choices by others pointing to this user and deactivate them
+    # NOT WORKING
+    Choice.where({:target_id => "#{current_user.id }"}).each do |their_obsolete_choice|
+      their_obsolete_choice.current = false
+    end
+    super
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

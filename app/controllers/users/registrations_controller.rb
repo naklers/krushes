@@ -25,7 +25,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   # def destroy
-  #   super
+  #   # Find all choices by others pointing to this user and deactivate them
+  #   Choice.where({:target_id => @user.id }).each do |their_obsolete_choice|
+  #     their_obsolete_choice.current = false
+  #   end
   # end
 
   # GET /resource/cancel

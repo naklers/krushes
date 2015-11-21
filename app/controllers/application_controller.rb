@@ -8,9 +8,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_sign_in_path_for(user)
-    choices_path(current_user)
-  end
+  def after_sign_in_path_for(resource)
+  stored_location_for(resource) ||
+    if resource.is_a?(Admin)
+      admin_root
+    else
+      choices_path(resource)
+    end
+end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) << :photo

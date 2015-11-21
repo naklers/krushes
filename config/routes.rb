@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
-  root 'contacts#new'
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-
   # # Routes for the Contact resource:
   # # NEW
+  root 'contacts#new'
   resources :contacts, only: [:new, :create]
 
   # Routes for the Choice resource:

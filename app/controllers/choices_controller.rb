@@ -131,16 +131,14 @@ class ChoicesController < ApplicationController
     @choice = Choice.find(params[:id])
     this_rank = @choice.rank
     this_target = @choice.target_id
-    @choice.destroy
 
     # Remove match from counterpart choice
-    Choice.where({:user_id => this_target }).each do |their_choice|
-      if their_choice.target_id == current_user.id
+    Choice.where({:user_id => this_target, :target_id => current_user.id }).each do |their_choice|
         their_choice.matched = false
         their_choice.save
-        break
-      end
     end
+
+    @choice.destroy
 
     # Update remaining choices' ranks
     current_user.choices.each do |remaining_choice|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121082700) do
+ActiveRecord::Schema.define(version: 20151122194503) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -54,7 +54,15 @@ ActiveRecord::Schema.define(version: 20151121082700) do
     t.boolean  "disclose_if_no_match"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "match_id"
     t.boolean  "current",              default: true
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer  "choice1_id"
+    t.integer  "choice2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

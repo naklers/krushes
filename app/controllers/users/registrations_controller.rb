@@ -24,10 +24,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    # Find all choices by others pointing to this user and deactivate them
-    # NOT WORKING
+    # Find all choices by others pointing to this user and mark them not current. This is different from a no-match!
     Choice.where({:target_id => "#{current_user.id }"}).each do |their_obsolete_choice|
       their_obsolete_choice.current = false
+      their_obsolete_choice.save
     end
     super
   end

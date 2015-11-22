@@ -15,8 +15,8 @@ class ChoicesController < ApplicationController
       choice2.save!
     end
     return true
-  rescue Exception => ex
-    return false
+    rescue Exception => ex
+      return false
   end
 
   def index
@@ -56,18 +56,15 @@ class ChoicesController < ApplicationController
       # Matching algorithm
       @choice.matched = false
       Choice.where({:user_id => @choice.target_id }).each do |their_choice|
-        # If there's a match...
         if their_choice.target_id == current_user.id
-          # Create new match object
-          match = Match.create!(user1_id: current_user.id, user2_id: their_choice.user_id, user1_active: true, user2_active: true)
           # Set up this choice for a match
           @choice.matched = true
-          @choice.match_id = match.id
           # Set up the counterpart's choice for a match
           their_choice.matched = true
-          their_choice.match_id = match.id
           their_choice.save
           break
+        else
+          @choice.matched = false
         end
       end
 
@@ -130,7 +127,6 @@ class ChoicesController < ApplicationController
     end
   end
 
-  # PENDING logic to destroy matches if the choice is removed
   def destroy
     @choice = Choice.find(params[:id])
     this_rank = @choice.rank

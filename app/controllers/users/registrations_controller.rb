@@ -25,9 +25,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   def destroy
     # Find all choices by others pointing to this user and deactivate them
-    # NOT WORKING
-    Choice.where({:target_id => "#{current_user.id }"}).each do |their_obsolete_choice|
-      their_obsolete_choice.current = false
+    # NOT WORKING likely b/c of permissions. CHANGE to use Match object!
+    Choice.where({:target_id => current_user.id}).each do |their_obsolete_choice|
+      # Finds their obsolete choice but doesn't perform the action, likely b/c of auth issues
+      puts("Yo! Found choice ##{their_obsolete_choice.id}")
+      # Operate on the Match object
     end
     super
   end

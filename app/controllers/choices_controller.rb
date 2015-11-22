@@ -59,7 +59,7 @@ class ChoicesController < ApplicationController
         # If there's a match...
         if their_choice.target_id == current_user.id
           # Create new match object
-          match = Match.create!(user1_id: current_user.id, user2_id: their_choice.user_id, user1_active: true, user2_active: true)
+          match = Match.create!(choice1_id: @choice.id, choice2_id: their_choice.id)
           # Set up this choice for a match
           @choice.matched = true
           @choice.match_id = match.id
@@ -130,13 +130,17 @@ class ChoicesController < ApplicationController
     end
   end
 
-  # PENDING logic to destroy matches if the choice is removed
+  # Logic to destroy matches if the choice is removed
   def destroy
     @choice = Choice.find(params[:id])
     this_rank = @choice.rank
     this_target = @choice.target_id
+    this_matched = @choice.matched
+
+
     @choice.destroy
 
+    # DELETE THIS PART when the view no longer relies on the Choice object's "matched" attribute
     # Remove match from counterpart choice
     Choice.where({:user_id => this_target }).each do |their_choice|
       if their_choice.target_id == current_user.id
@@ -154,6 +158,6 @@ class ChoicesController < ApplicationController
       end
     end
     redirect_to "/choices", :notice => "Crush deleted."
-
   end
+
 end

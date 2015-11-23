@@ -34,7 +34,8 @@ class ChoicesController < ApplicationController
     # All users to choose from
     # *************Pending some sort of filtering********
     non_applicable = [current_user]
-    current_user.choices.where({:current => true}).each do |existing_choice|
+    @this_active_choices = current_user.choices.where({:current => true})
+    @this_active_choices.each do |existing_choice|
       non_applicable.push(User.find(existing_choice.target_id))
     end
     @eligible_users = User.all_except(non_applicable)

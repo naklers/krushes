@@ -18,9 +18,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    @user.photo = params[:photo]
-  end
+  # def update
+  #   @user.photo = params[:photo]
+  #   super
+  # end
 
   # DELETE /resource
   def destroy
@@ -48,6 +49,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update_without_password(params)
+  end
+
+  def after_update_path_for(resource)
+    edit_user_registration_path
   end
 
   # If you have extra params to permit, append them to the sanitizer.

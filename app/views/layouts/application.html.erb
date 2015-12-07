@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>KMF</title>
+  <title><%= yield(:title) %></title>
+  <meta content="<%= yield(:desc) %>" name="description">
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <!-- Bootswatch CSS -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/united/bootstrap.min.css">
+
+  <!-- Fonts -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,7 +24,7 @@
   <style>
     /* Only necessary if you are using navbar-fixed-top */
     body {
-      /*padding-top: 60px;*/
+      padding-top: 50px;
     }
 
     .navbar-default {
@@ -65,7 +70,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if current_user.present? %>
-          <li><a href="/users/edit"><%= current_user.email %></a></li>
+          <li><a href="<%= edit_user_registration_path %>">Hi <%= current_user.name %>!</a></li>
           <li><a href="/users/sign_out" data-method="delete" rel="nofollow">Sign out</a></li>
           <% else %>
           <li><a href="/users/sign_in">Sign in</a></li>
@@ -93,6 +98,18 @@
     <%= yield %>
   </div>
 
+  <section id=footer>
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <div class="col-lg-12">
+        <p>Copyright &copy; Nabi 2015</p>
+      </div>
+    </div>
+  </footer>
+</section>
+
+  <!-- Bootstrap JS -->
   <!-- Might need to link jQuery too? -->
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 

@@ -3,7 +3,7 @@
 <h2>Edit your profile</h2>
 
 <div class="row">
-  <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-11">
+  <div class="col-sm-offset-1 col-sm-6">
     <div class="panel panel-default">
       <div class="panel panel-body">
         <img src="<%= @user.photo %>" class="img-responsive">
@@ -49,7 +49,7 @@
     <div class="form-group">
       <%= f.submit "Save changes", :class => "btn btn-primary col-sm-offset-3" %>
       or
-      <%= link_to "Back without saving", "/choices" %>
+      <%= link_to "Cancel changes", "/choices" %>
     </div>
     <% end %>
   </div>

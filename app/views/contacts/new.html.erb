@@ -1,8 +1,11 @@
+<% content_for :title, "KMF, Tinder for closed groups" %>
+<% content_for :desc, "KMF is the matchmaking app for private parties, trips, balls or just classmates" %>
+
 <!-- Full Width Image Header -->
 <header class="header-image">
   <div class="headline">
-      <h1>One Page Wonder</h1>
-      <h2>Will Knock Your Socks Off</h2>
+      <h1>KMF</h1>
+      <h2>Matchmaking for closed groups</h2>
   </div>
 </header>
 
@@ -12,31 +15,31 @@
     <hr class="featurette-divider">
     <!-- First Featurette -->
     <div class="featurette" id="about">
-      <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-      <h2 class="featurette-heading">Sendoff party? Class trip?
-        <span class="text-muted">Take the bonding to a new level</span>
+      <img class="featurette-image img-circle img-responsive pull-right" src="<%= asset_path( 'beach-couple_sm.jpg' ) %>">
+      <h2 class="featurette-heading">Graduation? Sendoff trip?
+        <span class="text-muted">Take bonding to a new level</span>
       </h2>
-      <p class="lead">KMF is the closed-group matchmaking app: group members select their crushes, and upon a Big Reveal they learn which of those are matches</p>
+      <p class="lead">In large classrooms or travel groups, crushes usually build up but cannot be confidently revealed without risking public exposure. Enter KMF!</p>
     </div>
 
     <hr class="featurette-divider">
     <!-- Second Featurette -->
     <div class="featurette" id="services">
-      <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-      <h2 class="featurette-heading">Facilitate long-sought matches
-        <span class="text-muted">within your peer group.</span>
+      <img class="featurette-image img-circle img-responsive pull-left" src="<%= asset_path( 'heart_sm.jpg' ) %>">
+      <h2 class="featurette-heading">Romance kindled
+        <span class="text-muted">within your peer group</span>
       </h2>
-      <p class="lead">Only group members can participate. Totally private and discreet - to the extent they want!</p>
+      <p class="lead">Participants select their crushes among other participants. Corresponded crushes will turn into matches. With total control on privacy, participants only reveal as much as they wish to!</p>
     </div>
 
     <hr class="featurette-divider">
     <!-- Third Featurette -->
     <div class="featurette" id="contact">
-      <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+      <img class="featurette-image img-circle img-responsive pull-right" src="<%= asset_path( 'admin_sm.jpg' ) %>">
       <h2 class="featurette-heading">One admin
-        <span class="text-muted">to rule them all.</span>
+        <span class="text-muted">to rule them all</span>
       </h2>
-      <p class="lead">As a group administrator, you control who can join the group,and can remove quitters in no time.</p>
+      <p class="lead">Participation by invite from you only. 100% private and discreet</p>
     </div>
 
     <hr class="featurette-divider">
@@ -48,10 +51,11 @@
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
         <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
-        <%= f.input :first_name, :required => true, :label => 'First'%>
+        <fieldset>
+        <%= f.input :first_name, :required => true, :label => 'First' %>
         <%= f.input :last_name, :required => true, :label => 'Last' %>
         <%= f.input :email, :required => true, placeholder: 'user@domain.com' %>
-        <%= f.input :entity_name, :label => 'Group or organization', placeholder: 'E.g. \'my school\'', :hint => 'We just like knowing who\'s interested in us!' %>
+        <%= f.input :entity_name, :required => false, :label => 'Group or organization', placeholder: 'E.g. \'my school\'. We just like knowing who\'s interested in us!' %>
         <!-- <%= f.input :entity_site,:as => :url, placeholder: 'E.g. myschool.com', :label => 'URL', :hint => 'Website for the group or organization you are inquiring on behalf of (optional)' %> -->
         <%= f.input :message, :as => :text, :required => true, :label => 'Message', placeholder: 'Type your message or inquiry here. We\'ll get back to you in no time!' %>
         <!-- Hidden so that no one can fill it out but computers will fill it out. This will determine whether the message is coming from a computer or not -->
@@ -62,18 +66,9 @@
           &nbsp
           <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
         </div>
+        </fieldset>
         <% end %>
       </div>
     </div>
   </div>
-</section>
-<section id=footer>
-  <!-- Footer -->
-  <footer>
-    <div class="row">
-      <div class="col-lg-12">
-        <p>Copyright &copy; Nabi 2015</p>
-      </div>
-    </div>
-  </footer>
 </section>

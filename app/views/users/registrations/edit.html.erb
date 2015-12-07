@@ -1,70 +1,91 @@
-<h2>Edit your profile</h2>
+<h2><%= @user.name %>'s profile</h2>
 
 <div class="row">
-  <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-11">
-    <div class="panel panel-default">
-      <div class="panel panel-body">
-        <img src="<%= @user.photo %>" class="img-responsive">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true }) do |f| %>
+  <div class="panel panel-default col-sm-offset-1 col-sm-8">
+    <div class="panel panel-header">
+      <h3>Change your picture</h3>
+    </div>
+    <div class="panel panel-body col-sm-offset-3 col-sm-4">
+      <img src="<%= @user.photo %>" class="img-responsive">
+      <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put, :multipart => true }) do |f| %>
         <%= devise_error_messages! %>
+        <i>You, as seen by other participants</i>
+        </br>
         <div class="form-group">
-         <%= f.label "Upload new photo", :class => "col-sm-3 control-label" %>
          <%= f.file_field :photo, :class => "form-control" %>
-       </div>
-       <div class="form-group">
-        <%= f.submit "Upload photo", :class => "btn btn-primary col-sm-offset-3" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Save picture", :class => "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="panel panel-default col-sm-offset-1 col-sm-8">
+    <div class="panel panel-header">
+      <h3>Change your email</h3>
+    </div>
+    <div class="panel panel-body">
+      <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="form-group">
+        <%= f.label :email, :class => "col-sm-3 control-label" %>
+        <%= f.email_field :email, autofocus: true %>
       </div>
-        <% end %>
-     </div>
-   </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+      <div class="form-group">
+        <%= f.submit "Save email", :class => "btn btn-primary col-sm-offset-3" %>
+        or
+        <%= link_to "Back without changes", "/choices" %>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
-
 <div class="row">
-  <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-11">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true }) do |f| %>
-    <%= devise_error_messages! %>
-
-    <div class="form-group">
-      <%= f.label :email, :class => "col-sm-3 control-label" %>
-      <%= f.email_field :email, autofocus: true %>
+  <div class="panel panel-default col-sm-offset-1 col-sm-8">
+    <div class="panel panel-header">
+      <h3>Change your password</h3>
     </div>
+    <div class="panel panel-body">
+      <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.label "New password", :class => "col-sm-3 control-label" %>
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "Confirm pwd", :class => "col-sm-3 control-label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+<!--       <div class="form-group">
+        <%= f.label "Current password", :class => "col-sm-3 control-label" %>
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div> -->
 
-    <div class="form-group">
-      <%= f.label "New password", :class => "col-sm-3 control-label" %>
-      <%= f.password_field :password, autocomplete: "off" %>
-      <i>(leave blank if you don't want to change it)</i>
+      <div class="form-group">
+        <%= f.submit "Save password", :class => "btn btn-primary col-sm-offset-3" %>
+        or
+        <%= link_to "Back without changes", "/choices" %>
+      </div>
+      <% end %>
     </div>
-
-    <div class="form-group">
-      <%= f.label "Confirm new password", :class => "col-sm-3 control-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Current password", :class => "col-sm-3 control-label" %>
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit "Save changes", :class => "btn btn-primary col-sm-offset-3" %>
-      or
-      <%= link_to "Back without saving", "/choices" %>
-    </div>
-    <% end %>
   </div>
 </div>
-</br>
-
-<h3>Delete your account</h3>
-
 <div class="row">
-  <div class="col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-9">
-    <p>Don't want to be a part of this anymore? <%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure you want to delete this account? There is no undoing this" }, method: :delete %>
-    </p>
+  <div class="panel panel-default col-sm-offset-1 col-sm-8">
+    <div class="panel panel-header">
+      <h3>Delete your account</h3>
+    </div>
+    <div class="panel panel-body">
+      <p>Don't want to be a part of this anymore? <%= link_to "Delete your account", registration_path(resource_name), data: { confirm: "Are you sure you want to delete this account? There is no undoing this" }, method: :delete %>
+      </p>
+    </div>
   </div>
 </div>

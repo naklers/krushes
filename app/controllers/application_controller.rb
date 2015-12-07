@@ -19,5 +19,7 @@ end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) << :photo
+    devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.for(:account_update) << :last_name
   end
 end

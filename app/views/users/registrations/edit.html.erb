@@ -24,7 +24,7 @@
 <div class="row">
   <div class="panel panel-default col-sm-offset-1 col-sm-8">
     <div class="panel panel-header">
-      <h3>Change your email</h3>
+      <h3>Change your personal info</h3>
     </div>
     <div class="panel panel-body">
       <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
@@ -34,10 +34,17 @@
         <%= f.label :email, :class => "col-sm-3 control-label" %>
         <%= f.email_field :email, autofocus: true %>
       </div>
-
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
+      <div class="form-group">
+        <%= f.label :name, :class => "col-sm-3 control-label" %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name, :class => "col-sm-3 control-label" %>
+        <%= f.text_field :last_name %>
+      </div>
       <div class="form-group">
         <%= f.submit "Save email", :class => "btn btn-primary col-sm-offset-3" %>
         or

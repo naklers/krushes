@@ -23,6 +23,7 @@ end
 index do
   column :id
   column :name
+  column :last_name
   column :email
   column :updated_at
   actions
@@ -37,11 +38,12 @@ config.sort_order = 'id_asc'
 #permit_params :name,:email
 # or
 #
-permit_params [:name,:email]
+permit_params [:name,:last_name,:email]
 
 form do |f|
   f.inputs "User" do
     f.input :name
+    f.input :last_name
     f.input :email
   end
   f.actions
@@ -60,6 +62,7 @@ after_create { |user| user.send_reset_password_instructions }
 
 # Right-side filters enabled
 filter :name, as: :select
+filter :last_name, as: :string
 filter :email, as: :string
 filter :id, as: :string, label: 'User ID'
 

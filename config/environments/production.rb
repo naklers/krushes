@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # If true, app will allow users to add/edit crushes and perform matching in the background. Otherwise it will just show the outcome
+  config.x.stage.matching = true
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -35,8 +38,6 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
-  # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
-
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
@@ -44,8 +45,7 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
+  # Use the lowest log level to ensure availability of diagnostic information when problems arise.
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
@@ -76,13 +76,13 @@ Rails.application.configure do
   # EMAILING
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  # CHANGE FOR FINAL PROD URL config.action_mailer.default_url_options = {:host => 'localhost:3000'}
+  config.action_mailer.default_url_options = {:host => 'kellogg-kindling.herokuapp.com'}
   config.action_mailer.default_options = {from: 'kellogg.kindling@gmail.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address              => 'smtp.gmail.com',
       :port                 => 587,
-      :domain               => 'http://localhost:3000',
+      :domain               => 'http://kellogg-kindling.herokuapp.com/',
       :user_name            => 'kellogg.kindling',
       :password             => 'mxpx2200',
       :authentication       => 'plain',

@@ -15,8 +15,7 @@ csv.each do |row|
   end
   puts("CREATED USER " + user.name.to_s + " with pwd " + user_hash[:password].to_s)
   # Ask mailer to send welcome email as part of the user creation
-  # DEACTIVATED
-  # UserMailer.welcome_email(user,generated_password).deliver!
+  UserMailer.welcome_email(user,generated_password).deliver!
 end
 
 if AdminUser.count == 0
